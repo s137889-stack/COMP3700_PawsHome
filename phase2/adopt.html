@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+
+
+<style>
+
+
+form{
+    display: grid;
+    gap: 20px;
+    border-radius: 6px;
+}
+.form-container {
+            width: 90%;
+        max-width: 600px;
+        margin: 60px auto;
+        background-color: #f3f3f3;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+    
+}
+label{
+    font-weight: bold;
+}
+
+textarea{
+    width: 95%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    height: 120px;
+}
+.inline-group{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.submit-btns {
+    display: flex;
+    gap: 20px;
+}
+
+ input[type="submit"],
+        input[type="reset"] {
+            padding: 12px 22px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+input[type="submit"] {
+    background: #8B4513 ;
+    color: white;
+}
+input[type="reset"] {
+    background:  #e0e0e0 ;
+}
+form > div {
+    margin-bottom: 20px;
+}
+    tr {
+        background-color: white;
+    }
+
+</style>
+</head>
+<body style="background-color: #87C38F; ">
+    
+    <header class="site-header">
+        <div class="container header-inner">
+        <a href="index.html" id="logo" class="logo-link" >
+            <img src="imgs/Artboard 1.png" alt="PawsHome logo" class="logo-img">
+        </a>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="About.html" >About us</a></li>
+                <li ><a href="pets.html" >Pets</a></li>
+                <li><a href="adopt.html"  style="color: #8B4513;">Adopt</a></li>
+                <li><a href="tips.html" >Pet Care Tips</a></li>
+                <li><a href="contact.html" >Contact</a></li>
+                <li><a href="donate.html" >Donate</a></li>
+
+            </ul>
+
+        </nav>
+
+        </div>
+                <div class="header-center-text">
+                <h1 style="font-weight:bold;">Adopt</h1>
+                <p>Fill out the form below to begin the adoption process.</p>
+
+            </div>
+    </header>
+    
+
+            <details style="width: 80%; margin: 20px auto;">
+    <summary style="cursor:pointer; font-size:20px; font-weight:bold; padding:10px;background:#6279b8; color:white; border-radius:8px;">
+            Adoption Requirement
+        </summary>
+        <table border="1" cellpadding="6" cellspacing="3" style="width: 50%; margin: auto; border-collapse: collapse;">
+            <tr style="background-color: #f0e5d8;">
+                <td>Requirement</td>
+                <td>Details</td>
+                
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>Minimum 21 years old</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Home environment</td>
+                <td>Safe and sutiable</td>
+            </tr>
+            <tr>
+                <td>preferable to have family</td>
+            </tr>
+            <tr>
+                <td>Commitment</td>
+                <td>provide proper care</td>
+            </tr>
+        </table>
+        </details>
+
+
+    <div class="form-container" style="text-align: center; color: #43291f;">
+        <h2 style="font-weight: bold;">Adoption request form</h2>
+        <p>Please fill all the fields</p>
+
+        <form action="https://httpbin.org/get" method="get">
+        <div class="personal">    
+            <label >Full Name</label><br> 
+            <input type="text" name="fullname" id="fullname" required> <br>
+            <label >Email</label> <br>
+            <input type="text" name="email" id="email" required><br> 
+            <label >Phone Number</label><br>
+            <input type="text" name="phone" id="phone" required><br> 
+
+            </div>
+            <div>
+            <label for="petName">Pet you want to adopt</label>
+            <select name="petname" id="petname" required>
+                <option value="">-- Select a pet --</option>
+                <option value="Thomas">Thomas</option>
+                <option value="Belly">Belly</option>
+                <option value="Garfield">Garfield</option>
+                <option value="Sam">Sam</option>
+                <option value="Carrot">Carrot</option>
+                <option value="Roshi">Roshi</option>
+            </select>
+
+            <p><strong>Have you owned a pet before?</strong></p>
+            <div class="inline-group">
+                <label ><input type="radio" name="ownedPet" id="yes" value="yes">Yes</label>
+                <label ><input type="radio" name="ownedPet" id="no" value="no">No</label>
+            </div>
+
+            <p>Why do you want to adopt a pet?</p>
+            <textarea name="reason" required></textarea>
+            </div>
+
+            <div id="home-info">
+                <p>Do you have other pets at home?</p>
+                <div class="inline-group">
+                    <label><input type="checkbox" name="otherPets" value="Dog">Dog</label>
+                    <label><input type="checkbox" name="otherPets" value="Cat">Cat</label>
+                    <label><input type="checkbox" name="otherPets" value="Parrot">Parrot</label>
+                    <label><input type="checkbox" name="otherPets" value="None">None</label>
+                    <label><input type="checkbox" name="otherPets" value="Other">Other</label> 
+                </div>
+                 <br>
+                <label>Home Size (m²)</label>
+                <input type="number" id="home-size" min="20" max="300">
+
+                <label>Activity level (0=low, 10 = very active):</label>
+                <input type="range" name="activity" id="activity" min="0" max="10">
+            </div>
+            <div class="submit-btns">
+                <input type="submit" value="submit form">
+                <input type="reset" value="reset">
+
+            </div>
+        </form>
+    </div>
+      <div class="footer">
+            <p>PawsHome © 2025</p>
+        </div>
+</body>
+</html>
