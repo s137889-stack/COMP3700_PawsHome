@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Memory Match - PawsHome</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .game-header {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+        }
+        .btn-game {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-game:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+        .card {
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card.matched {
+            transform: rotateY(180deg);
+            cursor: default;
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        .card-front {
+            background: white;
+            transform: rotateY(180deg);
+            font-size: 3rem;
+            color: #8B4513;
+        }
+        .card-back {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+            color: white;
+            font-size: 2rem;
+        }
+        .card.matched .card-front {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: rotateY(180deg) scale(1); }
+            50% { transform: rotateY(180deg) scale(1.05); }
+            100% { transform: rotateY(180deg) scale(1); }
+        }
+        .win-message {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-success bg-opacity-25">
+    <!--Used css here because there is no way to make the background img for the header using bootstrap -->
+    <header class="d-flex align-items-start justify-content-center text-white py-5 position-relative" 
+    style="background-image: url('imgs/pets.jpg'); background-size: cover; background-position: center; height: 300px;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255, 255, 255, 0.2);"></div>
+    
+        <div class="container d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
+        <a href="index.html" id="logo" class="d-flex align-items-center text-decoration-none" >
+            <img src="imgs/Artboard 1.png" alt="PawsHome logo" class="img-fluid" style="max-width: 100px; height: auto;">
+        </a>
+        </div>
+
+        <nav class="navbar navbar-expand-md navbar-light position-relative text-nowrap fw-bold" style="z-index: 2;">
+            <div class="container">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a href="index.html"class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="About.html" class="nav-link">About us</a></li>
+                <li class="nav-item"><a href="pets.html" class="nav-link" >Pets</a></li>
+                <li class="nav-item"><a href="adopt.html"class="nav-link" >Adopt</a></li>
+                <li class="nav-item"><a href="tips.html" class="nav-link">Pet Care Tips</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer</a></li>
+                <li class="nav-item"><a class="nav-link" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link" href="calculate.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link  active text-info" href="funpage.html">Fun & Games</a></li>
+
+            </ul>
+            </div>
+        </nav>
+
+        
+                <div class="text-center text-black position-absolute top-50 start-50 translate-middle "style="z-index: 3;">
+                <h1>Pet Memory Match Game</h1>
+                <p  >Test your memory by matching pairs of adorable pets!</p>
+            </div>
+    </header>
+
+    <!-- Main Game Content -->
+    <div class="container my-4">
+        <div class="bg-white rounded-3 shadow-lg overflow-hidden">
+            <!-- Game Header -->
+            <div class="game-header text-white text-center py-4">
+                <h2 class="mb-3"><i class="fas fa-paw me-2"></i>PawsHome Memory Match</h2>
+                <p class="mb-0">Find all the matching pairs of pets as quickly as you can!</p>
+            </div>
+            
+            <!-- Game Stats -->
+            <div class="bg-light py-3 border-bottom">
+                <div class="container">
+                    <div class="row text-center g-3">
+                        <div class="col-6 col-md-3">
+                            <div class="bg-white rounded-3 p-3 shadow-sm">
+                                <div class="h4 fw-bold text-brown mb-0" id="moves">0</div>
+                                <small class="text-muted">Moves</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="bg-white rounded-3 p-3 shadow-sm">
+                                <div class="h4 fw-bold text-brown mb-0" id="timer">0s</div>
+                                <small class="text-muted">Time</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="bg-white rounded-3 p-3 shadow-sm">
+                                <div class="h4 fw-bold text-brown mb-0" id="matches">0</div>
+                                <small class="text-muted">Matches</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="bg-white rounded-3 p-3 shadow-sm">
+                                <div class="h4 fw-bold text-brown mb-0" id="remaining">12</div>
+                                <small class="text-muted">Pairs Left</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Difficulty Selector -->
+            <div class="bg-light py-4 text-center">
+                <div class="container">
+                    <h5 class="mb-3">Select Difficulty:</h5>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <input type="radio" class="btn-check" name="difficulty" id="easy" autocomplete="off" checked>
+                        <label class="btn btn-outline-brown" for="easy">Easy (4x3)</label>
+                        
+                        <input type="radio" class="btn-check" name="difficulty" id="medium" autocomplete="off">
+                        <label class="btn btn-outline-brown" for="medium">Medium (4x4)</label>
+                        
+                        <input type="radio" class="btn-check" name="difficulty" id="hard" autocomplete="off">
+                        <label class="btn btn-outline-brown" for="hard">Hard (6x4)</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Board -->
+            <div class="container py-4">
+                <div class="row g-3 justify-content-center" id="gameBoard">
+                    <!-- Cards will be dynamically generated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Game Controls -->
+            <div class="text-center py-4 bg-light">
+                <button class="btn btn-game text-white me-2 mb-2" id="restartBtn">
+                    <i class="fas fa-redo me-2"></i>Restart Game
+                </button>
+                <button class="btn btn-game text-white mb-2" id="hintBtn">
+                    <i class="fas fa-lightbulb me-2"></i>Get Hint
+                </button>
+            </div>
+        </div>
+        
+        <!-- Win Message -->
+        <div class="win-message bg-white rounded-3 shadow-lg p-5 text-center my-5 mx-auto" id="winMessage" style="max-width: 500px;">
+            <i class="fas fa-trophy fa-4x text-brown mb-3"></i>
+            <h2 class="text-brown">Congratulations!</h2>
+            <p class="lead">You've matched all the pets in <span class="fw-bold text-brown" id="finalTime">0</span> seconds with <span class="fw-bold text-brown" id="finalMoves">0</span> moves!</p>
+            <button class="btn btn-game text-white mt-3" id="playAgainBtn">
+                <i class="fas fa-play me-2"></i>Play Again
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">PawsHome © 2025</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Game JavaScript (Same as original) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameConfig = {
+                easy: { rows: 3, cols: 4, totalPairs: 6 },
+                medium: { rows: 4, cols: 4, totalPairs: 8 },
+                hard: { rows: 4, cols: 6, totalPairs: 12 }
+            };
+            
+            const petIcons = [
+                'fa-dog', 'fa-cat', 'fa-dove', 'fa-fish', 'fa-otter', 'fa-hippo',
+                'fa-horse', 'fa-paw', 'fa-kiwi-bird', 'fa-spider', 'fa-crow', 'fa-frog'
+            ];
+            
+            let gameState = {
+                cards: [],
+                flippedCards: [],
+                matchedPairs: 0,
+                moves: 0,
+                gameStarted: false,
+                timer: 0,
+                timerInterval: null,
+                currentDifficulty: 'medium',
+                canFlip: true
+            };
+            
+            const gameBoard = document.getElementById('gameBoard');
+            const movesElement = document.getElementById('moves');
+            const timerElement = document.getElementById('timer');
+            const matchesElement = document.getElementById('matches');
+            const remainingElement = document.getElementById('remaining');
+            const restartBtn = document.getElementById('restartBtn');
+            const hintBtn = document.getElementById('hintBtn');
+            const winMessage = document.getElementById('winMessage');
+            const finalTimeElement = document.getElementById('finalTime');
+            const finalMovesElement = document.getElementById('finalMoves');
+            const playAgainBtn = document.getElementById('playAgainBtn');
+            const difficultyRadios = document.querySelectorAll('input[name="difficulty"]');
+            
+            initGame();
+            
+            function initGame() {
+                resetGameState();
+                setupEventListeners();
+                createGameBoard();
+            }
+            
+            function resetGameState() {
+                gameState.cards = [];
+                gameState.flippedCards = [];
+                gameState.matchedPairs = 0;
+                gameState.moves = 0;
+                gameState.gameStarted = false;
+                gameState.timer = 0;
+                gameState.canFlip = true;
+                
+                if (gameState.timerInterval) {
+                    clearInterval(gameState.timerInterval);
+                    gameState.timerInterval = null;
+                }
+                
+                updateGameStats();
+                winMessage.style.display = 'none';
+            }
+            
+            function setupEventListeners() {
+                restartBtn.addEventListener('click', function() {
+                    resetGameState();
+                    createGameBoard();
+                });
+                
+                hintBtn.addEventListener('click', provideHint);
+                
+                playAgainBtn.addEventListener('click', function() {
+                    resetGameState();
+                    createGameBoard();
+                });
+                
+                difficultyRadios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        if (this.checked) {
+                            gameState.currentDifficulty = this.id;
+                            resetGameState();
+                            createGameBoard();
+                        }
+                    });
+                });
+            }
+            
+            function createGameBoard() {
+                gameBoard.innerHTML = '';
+                const config = gameConfig[gameState.currentDifficulty];
+                
+                const selectedIcons = petIcons.slice(0, config.totalPairs);
+                const cardIcons = [...selectedIcons, ...selectedIcons];
+                shuffleArray(cardIcons);
+                
+                cardIcons.forEach((icon, index) => {
+                    const card = createCardElement(icon, index);
+                    gameState.cards.push({
+                        id: index,
+                        icon: icon,
+                        element: card,
+                        isFlipped: false,
+                        isMatched: false
+                    });
+                    
+                    gameBoard.appendChild(card);
+                });
+                
+                updateRemainingPairs();
+            }
+            
+            function createCardElement(icon, id) {
+                const card = document.createElement('div');
+                card.className = 'col-3 col-md-2';
+                card.innerHTML = `
+                    <div class="card w-100 h-100" data-card-id="${id}">
+                        <div class="card-back">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="card-front">
+                            <i class="fas ${icon}"></i>
+                        </div>
+                    </div>
+                `;
+                
+                card.querySelector('.card').addEventListener('click', (e) => {
+                    const cardElement = e.currentTarget;
+                    const cardId = parseInt(cardElement.dataset.cardId);
+                    flipCard(cardElement, cardId);
+                });
+                
+                return card;
+            }
+            
+            function flipCard(cardElement, cardId) {
+                if (!gameState.canFlip || 
+                    gameState.cards[cardId].isFlipped || 
+                    gameState.cards[cardId].isMatched ||
+                    gameState.flippedCards.length >= 2) {
+                    return;
+                }
+                
+                if (!gameState.gameStarted) {
+                    startGameTimer();
+                    gameState.gameStarted = true;
+                }
+                
+                cardElement.classList.add('flipped');
+                gameState.cards[cardId].isFlipped = true;
+                gameState.flippedCards.push(cardId);
+                
+                if (gameState.flippedCards.length === 2) {
+                    gameState.moves++;
+                    updateGameStats();
+                    gameState.canFlip = false;
+                    setTimeout(checkForMatch, 1000);
+                }
+            }
+            
+            function checkForMatch() {
+                const [firstCardId, secondCardId] = gameState.flippedCards;
+                const firstCard = gameState.cards[firstCardId];
+                const secondCard = gameState.cards[secondCardId];
+                
+                if (firstCard.icon === secondCard.icon) {
+                    firstCard.isMatched = true;
+                    secondCard.isMatched = true;
+                    firstCard.element.querySelector('.card').classList.add('matched');
+                    secondCard.element.querySelector('.card').classList.add('matched');
+                    
+                    gameState.matchedPairs++;
+                    updateGameStats();
+                    updateRemainingPairs();
+                    
+                    if (gameState.matchedPairs === gameConfig[gameState.currentDifficulty].totalPairs) {
+                        endGame();
+                    }
+                } else {
+                    firstCard.element.querySelector('.card').classList.remove('flipped');
+                    secondCard.element.querySelector('.card').classList.remove('flipped');
+                    firstCard.isFlipped = false;
+                    secondCard.isFlipped = false;
+                }
+                
+                gameState.flippedCards = [];
+                gameState.canFlip = true;
+            }
+            
+            function startGameTimer() {
+                gameState.timerInterval = setInterval(() => {
+                    gameState.timer++;
+                    timerElement.textContent = `${gameState.timer}s`;
+                }, 1000);
+            }
+            
+            function updateGameStats() {
+                movesElement.textContent = gameState.moves;
+                matchesElement.textContent = gameState.matchedPairs;
+            }
+            
+            function updateRemainingPairs() {
+                const config = gameConfig[gameState.currentDifficulty];
+                remainingElement.textContent = config.totalPairs - gameState.matchedPairs;
+            }
+            
+            function provideHint() {
+                const unmatchedCards = gameState.cards.filter(card => 
+                    !card.isMatched && !card.isFlipped
+                );
+                
+                if (unmatchedCards.length > 0) {
+                    const firstCard = unmatchedCards[0];
+                    const matchingCard = gameState.cards.find(card => 
+                        card.icon === firstCard.icon && 
+                        card.id !== firstCard.id && 
+                        !card.isMatched && 
+                        !card.isFlipped
+                    );
+                    
+                    if (matchingCard) {
+                        firstCard.element.querySelector('.card').classList.add('flipped');
+                        matchingCard.element.querySelector('.card').classList.add('flipped');
+                        
+                        setTimeout(() => {
+                            firstCard.element.querySelector('.card').classList.remove('flipped');
+                            matchingCard.element.querySelector('.card').classList.remove('flipped');
+                        }, 1500);
+                    }
+                }
+            }
+            
+            function endGame() {
+                clearInterval(gameState.timerInterval);
+                finalTimeElement.textContent = gameState.timer;
+                finalMovesElement.textContent = gameState.moves;
+                setTimeout(() => {
+                    winMessage.style.display = 'block';
+                }, 1000);
+            }
+            
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+        });
+    </script>
+
+    <style>
+        .bg-brown { background-color: #8B4513 !important; }
+        .text-brown { color: #8B4513 !important; }
+        .border-brown { border-color: #8B4513 !important; }
+        .btn-outline-brown { 
+            color: #8B4513; 
+            border-color: #8B4513; 
+        }
+        .btn-outline-brown:hover,
+        .btn-check:checked + .btn-outline-brown {
+            background-color: #8B4513;
+            border-color: #8B4513;
+            color: white;
+        }
+    </style>
+</body>
+</html>

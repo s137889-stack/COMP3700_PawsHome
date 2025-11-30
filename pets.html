@@ -1,99 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+crossorigin="anonymous"></script>
+
 </head>
+
 <body>
 
-    <header class="site-header">
-        <div class="container header-inner">
-        <a href="index.html" id="logo" class="logo-link" >
-            <img src="imgs/Artboard 1.png" alt="PawsHome logo" class="logo-img">
+    <header class="d-flex align-items-start justify-content-center text-white py-5 position-relative" 
+    style="background-image: url('imgs/pets.jpg'); background-size: cover; background-position: center; height: 300px;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255, 255, 255, 0.2);"></div>
+    
+        <div class="container d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
+        <a href="index.html" id="logo" class="d-flex align-items-center text-decoration-none" >
+            <img src="imgs/Artboard 1.png" alt="PawsHome logo" class="img-fluid" style="max-width: 100px; height: auto;">
         </a>
-        <nav class="main-nav">
-            <ul class="nav-links">
-                <li><a href="index.html" >Home</a></li>
-                <li><a href="About.html" >About us</a></li>
-                <li ><a href="pets.html" style="color: #8B4513;" >Pets</a></li>
-                <li><a href="adopt.html" >Adopt</a></li>
-                <li><a href="tips.html" >Pet Care Tips</a></li>
-                <li><a href="contact.html" >Contact</a></li>
-                <li><a href="donate.html" >Donate</a></li>
-                <li><a href="volunteer.html">Volunteer</a></li>
+        </div>
+
+        <nav class="navbar navbar-expand-md navbar-light position-relative text-nowrap fw-bold" style="z-index: 2;">
+            <div class="container">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a href="index.html"class="nav-link ">Home</a></li>
+                <li class="nav-item"><a href="About.html" class="nav-link">About us</a></li>
+                <li class="nav-item"><a href="pets.html" class="nav-link active text-info" >Pets</a></li>
+                <li class="nav-item"><a href="adopt.html"class="nav-link" >Adopt</a></li>
+                <li class="nav-item"><a href="tips.html" class="nav-link">Pet Care Tips</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer</a></li>
+                <li class="nav-item"><a class="nav-link" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link" href="calculate.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link" href="funpage.html">Fun & Games</a></li>
 
             </ul>
-
+            </div>
         </nav>
 
-        </div>
-                <div class="header-center-text">
-                <h1 style="font-weight:bold;">Pet Gallery</h1>
-                <p >List of available pets to be adopted.
-
-</p>
+        
+                <div class="text-center text-black position-absolute top-50 start-50 translate-middle "style="z-index: 3;">
+                <h1>Pet pet Gallery</h1>
+                <p  >List of available pets to be adopted</p>
             </div>
     </header>
 
-    <div class="pet-Gallery">
-        <h2 style="text-align: center; margin-top: 40px;">Available Pets</h2>
+    <div class="container py-5">
+        <h2 class="text-center mb-4" >Available Pets</h2>
 
-        <div class="pets-container">
+        <div class="row justify-content-center">
 
-            <div class="pet-card">  
-                <img src="imgs/Thomas.jpg" alt="Thomas">
-                <h3>Thomas</h3>
-                <P>1 Years old, Male</P>
+        <div class="col-12 col-md-3 mb-4">
+
+            <div class=" card h-100">  
+                <img src="imgs/Thomas.jpg" alt="Thomas" class="card-img-top img-fluid" >
+                <div class="card-body text-center">
+                <h3 class="card-title">Thomas</h3>
+                <P class="card-text">1 Years old, Male</P>
+                </div>
+            </div>
+            </div>
+            <div class="col-12 col-md-3 mb-4">
+            <div class="card h-100">  
+                <img src="imgs/Belly.jpg" alt="belly" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Belly</h3>
+                <P class="card-text">3 Years old, Male</P>
+                </div>
+            </div>
+        </div>
+            <div class="col-12 col-md-3 mb-4">
+            <div class="card h-100">  
+                <img src="imgs/Garfield.jpg" alt="Garfield" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Garfield</h3>
+                <P class="card-text">6 Years old, Female</P>
+                </div>
+            </div>
             </div>
 
-            <div class="pet-card">  
-                <img src="imgs/Belly.jpg" alt="Belly">
-                <h3>Belly</h3>
-                <P>3 Years old, Male</P>
+                    <div class="col-12 col-md-3 mb-4">
+                <div class="card h-100">  
+                <img src="imgs/Sir Willam.jpg" alt="Sir Willam" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Sir Willam</h3>
+                <P class="card-text">9 Years old, Male</P>
+                </div>
             </div>
-
-            <div class="pet-card">  
-                <img src="imgs/Garfield.jpg" alt="Garfield">
-                <h3>Garfield</h3>
-                <P>6 Years old, Female</P>
             </div>
-
-            <div class="pet-card">  
-                <img src="imgs/Sir Willam.jpg" alt="Sir Willam">
-                <h3>Sir Willam</h3>
-                <P>9 Years old, Male</P>
+                <div class="col-12 col-md-3 mb-4">
+                <div class="card h-100">  
+                <img src="imgs/Carrot.jpg" alt="Carrot" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Carrot</h3>
+                <P class="card-text">1 Years old, Female</P>
+                </div>
             </div>
-
-            <div class="pet-card">  
-                <img src="imgs/Carrot.jpg" alt="Carrot">
-                <h3>Carrot</h3>
-                <P>1 Years old, Female</P>
             </div>
-
-            <div class="pet-card">  
-                <img src="imgs/Sebastian.jpg" alt="Sebastian ">
-                <h3>Sebastian </h3>
-                <P>1 Years old, Male</P>
+            
+            <div class="col-12 col-md-3 mb-4">
+                <div class="card h-100">  
+                <img src="imgs/Sebastian.jpg" alt="Sebastian" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Sebastian</h3>
+                <P class="card-text">1 Years old, Male</P>
+                </div>
             </div>
-
-            <div class="pet-card">  
-                <img src="imgs/Sam.jpg" alt="Sam">
-                <h3>Sam</h3>
-                <P>4 Years old, Female</P>
             </div>
+            <div class="col-12 col-md-3 mb-4">
 
-            <div class="pet-card">  
-                <img src="imgs/Roshi.jpg" alt="Roshi">
-                <h3>Roshi</h3>
-                <P>3 Years old, Male</P>
+            <div class="card h-100">  
+                <img src="imgs/Sam.jpg" alt="Sam" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Sam</h3>
+                <P class="card-text">4 Years old, Female</P>
+                </div>
             </div>
+            </div>
+                <div class="col-12 col-md-3 mb-4">
+                 <div class="card h-100">  
+                <img src="imgs/Roshi.jpg" alt="Roshi" class="card-img-top img-fluid">
+                <div class="card-body text-center">
+                <h3 class="card-title">Roshi</h3>
+                <P class="card-text">3 Years old, Male</P>
+                </div>
+            </div>            
+            </div>            
 
+            
 
+        </div>
         </div>
 
     </div>
-      <div class="footer">
+      <footer class="bg-success text- text-center py-3 mt-4">
             <p>PawsHome © 2025</p>
-        </div>
+        </footer>
 </body>
 
 </html>

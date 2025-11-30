@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback - PawsHome</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .form-header {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+        .required::after {
+            content: " *";
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body class="bg-success bg-opacity-25">
+    <!--Used css here because there is no way to make the background img for the header using bootstrap -->
+    <header class="d-flex align-items-start justify-content-center text-white py-5 position-relative" 
+    style="background-image: url('imgs/pets.jpg'); background-size: cover; background-position: center; height: 300px;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255, 255, 255, 0.2);"></div>
+    
+        <div class="container d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
+        <a href="index.html" id="logo" class="d-flex align-items-center text-decoration-none" >
+            <img src="imgs/Artboard 1.png" alt="PawsHome logo" class="img-fluid" style="max-width: 100px; height: auto;">
+        </a>
+        </div>
+
+        <nav class="navbar navbar-expand-md navbar-light position-relative text-nowrap fw-bold" style="z-index: 2;">
+            <div class="container">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a href="index.html"class="nav-link ">Home</a></li>
+                <li class="nav-item"><a href="About.html" class="nav-link">About us</a></li>
+                <li class="nav-item"><a href="pets.html" class="nav-link" >Pets</a></li>
+                <li class="nav-item"><a href="adopt.html"class="nav-link" >Adopt</a></li>
+                <li class="nav-item"><a href="tips.html" class="nav-link">Pet Care Tips</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer</a></li>
+                <li class="nav-item"><a class="nav-link active text-info" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link" href="calculate.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link" href="funpage.html">Fun & Games</a></li>
+
+            </ul>
+            </div>
+        </nav>
+
+        
+                <div class="text-center text-black position-absolute top-50 start-50 translate-middle "style="z-index: 3;">
+                <h1>Customer Feedback Questionnaire</h1>
+                <p  >Help us improve our services by sharing your experience</p>
+            </div>
+    </header>
+
+    <!-- Main Questionnaire Form -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-light rounded-3 shadow-lg overflow-hidden">
+                    <!-- Header -->
+                    <div class="form-header text-white text-center py-4">
+                        <h2 class="mb-3"><i class="fas fa-comment-dots me-2"></i>PawsHome Feedback Form</h2>
+                        <p class="mb-0">Your opinion helps us provide better service to pets and their families</p>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="p-4 p-md-5">
+                        <form id="feedbackForm" novalidate>
+                            <!-- Personal Information Section -->
+                            <div class="bg-white rounded-3 p-4 mb-4 border-start border-4 border-brown shadow-sm">
+                                <h4 class="mb-4"><i class="fas fa-user me-2 text-brown"></i>Personal Information</h4>
+                                
+                                <!-- Full Name -->
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label required">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" 
+                                           placeholder="Enter your full name" required>
+                                    <div class="invalid-feedback">
+                                        Please provide your full name (at least 2 words with letters only).
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label required">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" 
+                                           placeholder="Sxxxxxx.email@example.com" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email address.
+                                    </div>
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" 
+                                           placeholder="(123) 456-7890">
+                                    <div class="form-text">Optional - include area code</div>
+                                </div>
+                            </div>
+
+                            <!-- Service Experience Section -->
+                            <div class="bg-white rounded-3 p-4 mb-4 border-start border-4 border-brown shadow-sm">
+                                <h4 class="mb-4"><i class="fas fa-paw me-2 text-brown"></i>Service Experience</h4>
+                                
+                                <!-- Service Type -->
+                                <div class="mb-4">
+                                    <label class="form-label required">Which services have you used?</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" name="services" value="adoption" id="adoptionService">
+                                                <label class="form-check-label" for="adoptionService">
+                                                    Pet Adoption
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" name="services" value="donation" id="donationService">
+                                                <label class="form-check-label" for="donationService">
+                                                    Donation
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" name="services" value="volunteer" id="volunteerService">
+                                                <label class="form-check-label" for="volunteerService">
+                                                    Volunteering
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" name="services" value="consultation" id="consultationService">
+                                                <label class="form-check-label" for="consultationService">
+                                                    Pet Care Consultation
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please select at least one service.
+                                    </div>
+                                </div>
+
+                                <!-- Satisfaction Rating -->
+                                <div class="mb-4">
+                                    <label class="form-label required">Overall satisfaction with our services</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="satisfaction" id="verySatisfied" value="very-satisfied" required>
+                                                <label class="form-check-label" for="verySatisfied">
+                                                    Very Satisfied
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="satisfaction" id="satisfied" value="satisfied">
+                                                <label class="form-check-label" for="satisfied">
+                                                    Satisfied
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="satisfaction" id="neutral" value="neutral">
+                                                <label class="form-check-label" for="neutral">
+                                                    Neutral
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="satisfaction" id="unsatisfied" value="unsatisfied">
+                                                <label class="form-check-label" for="unsatisfied">
+                                                    Unsatisfied
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="satisfaction" id="veryUnsatisfied" value="very-unsatisfied">
+                                                <label class="form-check-label" for="veryUnsatisfied">
+                                                    Very Unsatisfied
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please select your satisfaction level.
+                                    </div>
+                                </div>
+
+                                <!-- Recommendation -->
+                                <div class="mb-3">
+                                    <label for="recommendation" class="form-label required">How likely are you to recommend PawsHome to others?</label>
+                                    <select class="form-select" id="recommendation" name="recommendation" required>
+                                        <option value="">-- Please select --</option>
+                                        <option value="10">10 - Extremely Likely</option>
+                                        <option value="9">9</option>
+                                        <option value="8">8</option>
+                                        <option value="7">7</option>
+                                        <option value="6">6</option>
+                                        <option value="5">5 - Neutral</option>
+                                        <option value="4">4</option>
+                                        <option value="3">3</option>
+                                        <option value="2">2</option>
+                                        <option value="1">1 - Not at all Likely</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select how likely you are to recommend us.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Feedback Section -->
+                            <div class="bg-white rounded-3 p-4 mb-4 border-start border-4 border-brown shadow-sm">
+                                <h4 class="mb-4"><i class="fas fa-edit me-2 text-brown"></i>Additional Feedback</h4>
+                                
+                                <!-- Comments -->
+                                <div class="mb-4">
+                                    <label for="comments" class="form-label">Additional Comments or Suggestions</label>
+                                    <textarea class="form-control" id="comments" name="comments" 
+                                              rows="4" placeholder="Please share any additional feedback, suggestions, or concerns..."></textarea>
+                                </div>
+
+                                <!-- Pet Reference ID -->
+                                <div class="mb-4">
+                                    <label for="petReference" class="form-label">Pet Reference ID (if applicable)</label>
+                                    <input type="text" class="form-control" id="petReference" name="petReference" 
+                                           placeholder="e.g., PH-2024-001">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid Pet Reference ID (format: PH-YYYY-NNN).
+                                    </div>
+                                </div>
+
+                                <!-- Contact Permission -->
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="contactPermission" name="contactPermission">
+                                        <label class="form-check-label" for="contactPermission">
+                                            I give permission to be contacted for follow-up regarding my feedback
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Buttons -->
+                            <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mt-4">
+                                <button type="reset" class="btn btn-outline-secondary btn-lg order-2 order-md-1">
+                                    <i class="fas fa-redo me-2"></i>Reset Form
+                                </button>
+                                <button type="submit" class="btn btn-submit text-white btn-lg order-1 order-md-2">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Feedback
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">PawsHome © 2025</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript Validation (Same as original) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('feedbackForm');
+            
+            const validationRules = {
+                fullName: {
+                    pattern: /^[A-Za-z]+(?:\s+[A-Za-z]+)+$/,
+                    message: "Please enter your full name (first and last name, letters only)"
+                },
+                email: {
+                    pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Please enter a valid email address"
+                },
+                petReference: {
+                    pattern: /^PH-\d{4}-\d{3}$/,
+                    message: "Please enter a valid Pet Reference ID (format: PH-YYYY-NNN)"
+                }
+            };
+
+            function validateFullName(input) {
+                const value = input.value.trim();
+                if (validationRules.fullName.pattern.test(value)) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    return true;
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    return false;
+                }
+            }
+
+            function validateEmail(input) {
+                const value = input.value.trim();
+                if (validationRules.email.pattern.test(value)) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    return true;
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    return false;
+                }
+            }
+
+            function validatePetReference(input) {
+                const value = input.value.trim();
+                if (value === '' || validationRules.petReference.pattern.test(value)) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    return true;
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    return false;
+                }
+            }
+
+            function validateServices() {
+                const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
+                const servicesContainer = document.querySelector('input[name="services"]').closest('.mb-4');
+                
+                if (serviceCheckboxes.length > 0) {
+                    servicesContainer.classList.remove('is-invalid');
+                    return true;
+                } else {
+                    servicesContainer.classList.add('is-invalid');
+                    return false;
+                }
+            }
+
+            document.getElementById('fullName').addEventListener('blur', function() {
+                validateFullName(this);
+            });
+
+            document.getElementById('email').addEventListener('blur', function() {
+                validateEmail(this);
+            });
+
+            document.getElementById('petReference').addEventListener('blur', function() {
+                validatePetReference(this);
+            });
+
+            document.querySelectorAll('input[name="services"]').forEach(checkbox => {
+                checkbox.addEventListener('change', validateServices);
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                let isValid = true;
+
+                if (!validateFullName(document.getElementById('fullName'))) {
+                    isValid = false;
+                }
+
+                if (!validateEmail(document.getElementById('email'))) {
+                    isValid = false;
+                }
+
+                if (!validateServices()) {
+                    isValid = false;
+                }
+
+                const satisfactionSelected = document.querySelector('input[name="satisfaction"]:checked');
+                const satisfactionContainer = document.querySelector('input[name="satisfaction"]').closest('.mb-4');
+                if (!satisfactionSelected) {
+                    satisfactionContainer.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    satisfactionContainer.classList.remove('is-invalid');
+                }
+
+                const recommendation = document.getElementById('recommendation');
+                if (!recommendation.value) {
+                    recommendation.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    recommendation.classList.remove('is-invalid');
+                }
+
+                if (!validatePetReference(document.getElementById('petReference'))) {
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert('Thank you for your feedback! Your responses have been recorded successfully.');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                    document.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                        el.classList.remove('is-valid', 'is-invalid');
+                    });
+                } else {
+                    form.classList.add('was-validated');
+                }
+            });
+
+            form.addEventListener('reset', function() {
+                form.classList.remove('was-validated');
+                document.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                    el.classList.remove('is-valid', 'is-invalid');
+                });
+            });
+        });
+    </script>
+
+    <style>
+        .bg-brown { background-color: #8B4513 !important; }
+        .text-brown { color: #8B4513 !important; }
+        .border-brown { border-color: #8B4513 !important; }
+    </style>
+</body>
+</html>

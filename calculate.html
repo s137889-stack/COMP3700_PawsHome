@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Donation Calculator - PawsHome</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Minimal custom CSS for specific gradients and animations */
+        .calculator-header {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #8B4513 0%, #43291F 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-calculate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+        .breakdown-item:last-child {
+            border-top: 2px solid #8B4513;
+        }
+    </style>
+</head>
+<body class="bg-success bg-opacity-25">
+    <!-- Navigation -->
+    <!--Used css here because there is no way to make the background img for the header using bootstrap -->
+    <header class="d-flex align-items-start justify-content-center text-white py-5 position-relative" 
+    style="background-image: url('imgs/pets.jpg'); background-size: cover; background-position: center; height: 300px;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255, 255, 255, 0.2);"></div>
+    
+        <div class="container d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
+        <a href="index.html" id="logo" class="d-flex align-items-center text-decoration-none" >
+            <img src="imgs/Artboard 1.png" alt="PawsHome logo" class="img-fluid" style="max-width: 100px; height: auto;">
+        </a>
+        </div>
+
+        <nav class="navbar navbar-expand-md navbar-light position-relative text-nowrap fw-bold" style="z-index: 2;">
+            <div class="container">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a href="index.html"class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="About.html" class="nav-link">About us</a></li>
+                <li class="nav-item"><a href="pets.html" class="nav-link" >Pets</a></li>
+                <li class="nav-item"><a href="adopt.html"class="nav-link" >Adopt</a></li>
+                <li class="nav-item"><a href="tips.html" class="nav-link">Pet Care Tips</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer</a></li>
+                <li class="nav-item"><a class="nav-link" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link active text-info" href="calculate.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link" href="funpage.html">Fun & Games</a></li>
+
+            </ul>
+            </div>
+        </nav>
+
+        
+                <div class="text-center text-black position-absolute top-50 start-50 translate-middle "style="z-index: 3;">
+                <h1>PawsHome Adoption Calculator</h1>
+                <p  >Calculate your adoption donation and see available discounts</p>
+            </div>
+    </header>
+
+    <!-- Main Calculator Content -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-light rounded-3 shadow-lg overflow-hidden">
+                    <!-- Header -->
+                    <div class="calculator-header text-white text-center py-4">
+                        <h2 class="mb-3"><i class="fas fa-calculator me-2"></i>PawsHome Adoption Calculator</h2>
+                        <p class="mb-0">Your donation helps cover medical care, vaccinations, and ongoing rescue operations</p>
+                    </div>
+
+                    <!-- Calculator Form -->
+                    <div class="p-4 p-md-5">
+                        <div class="row">
+                            <!-- Input Section -->
+                            <div class="col-md-7">
+                                <!-- Pet Information Section -->
+                                <div class="bg-white rounded-3 p-4 mb-4 border-start border-4 border-brown shadow-sm">
+                                    <h4 class="mb-4"><i class="fas fa-paw fa-2x text-brown me-2"></i>Pet Information</h4>
+                                    
+                                    <!-- Pet Type -->
+                                    <div class="mb-3">
+                                        <label for="petType" class="form-label fw-bold">Select Pet Type</label>
+                                        <select class="form-select" id="petType" name="petType" required>
+                                            <option value="">-- Choose a pet type --</option>
+                                            <option value="dog">Dog - Base Donation: $150</option>
+                                            <option value="cat">Cat - Base Donation: $100</option>
+                                            <option value="puppy">Puppy (under 1 year) - Base Donation: $200</option>
+                                            <option value="kitten">Kitten (under 1 year) - Base Donation: $120</option>
+                                            <option value="senior-pet">Senior Pet (7+ years) - Base Donation: $75</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Number of Pets -->
+                                    <div class="mb-3">
+                                        <label for="petCount" class="form-label fw-bold">Number of Pets</label>
+                                        <input type="number" class="form-control" id="petCount" name="petCount" 
+                                               min="1" max="5" value="1" required>
+                                        <div class="form-text">Maximum 5 pets per adoption application</div>
+                                    </div>
+                                </div>
+
+                                <!-- Additional Services Section -->
+                                <div class="bg-white rounded-3 p-4 mb-4 border-start border-4 border-brown shadow-sm">
+                                    <h4 class="mb-4"><i class="fas fa-plus-circle fa-2x text-brown me-2"></i>Additional Services</h4>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Optional Services (select all that apply)</label>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="services" value="microchip" id="microchip">
+                                            <label class="form-check-label" for="microchip">
+                                                Microchipping - $25
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="services" value="training" id="training">
+                                            <label class="form-check-label" for="training">
+                                                Basic Training Package - $50
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="services" value="grooming" id="grooming">
+                                            <label class="form-check-label" for="grooming">
+                                                Initial Grooming Session - $35
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="services" value="supplies" id="supplies">
+                                            <label class="form-check-label" for="supplies">
+                                                Starter Supply Kit - $40
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Adopter Information Section -->
+                                <div class="bg-white rounded-3 p-4 mb-4 border-start border-4 border-brown shadow-sm">
+                                    <h4 class="mb-4"><i class="fas fa-user fa-2x text-brown me-2"></i>Adopter Information</h4>
+                                    
+                                    <!-- Adopter Age -->
+                                    <div class="mb-3">
+                                        <label for="adopterAge" class="form-label fw-bold">Your Age</label>
+                                        <input type="number" class="form-control" id="adopterAge" name="adopterAge" 
+                                               min="18" max="120" placeholder="Enter your age" required>
+                                    </div>
+
+                                    <!-- Veteran Status -->
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Are you a military veteran?</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="veteran" id="veteranYes" value="yes">
+                                            <label class="form-check-label" for="veteranYes">
+                                                Yes <span class="badge bg-success ms-1">10% Discount</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="veteran" id="veteranNo" value="no" checked>
+                                            <label class="form-check-label" for="veteranNo">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Previous Adopter -->
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Have you adopted from PawsHome before?</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="previousAdopter" id="previousYes" value="yes">
+                                            <label class="form-check-label" for="previousYes">
+                                                Yes <span class="badge bg-success ms-1">5% Loyalty Discount</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="previousAdopter" id="previousNo" value="no" checked>
+                                            <label class="form-check-label" for="previousNo">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Calculate Button -->
+                                <div class="d-grid gap-2 mt-4">
+                                    <button type="button" class="btn btn-calculate text-white btn-lg py-3" id="calculateBtn">
+                                        <i class="fas fa-calculator me-2"></i> Calculate Total Donation
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Results Section -->
+                            <div class="col-md-5">
+                                <div class="bg-success bg-opacity-10 border border-success rounded-3 p-4 h-100">
+                                    <h4 class="text-center mb-4"><i class="fas fa-receipt me-2"></i>Donation Summary</h4>
+                                    <p class="text-muted text-center">Your calculated adoption donation will appear here</p>
+                                    
+                                    <div id="calculationResult" class="text-center py-4">
+                                        <div class="mb-4">
+                                            <i class="fas fa-paw fa-3x text-muted"></i>
+                                        </div>
+                                        <h5>Fill out the form to calculate</h5>
+                                        <p class="text-muted">Select your options and click calculate</p>
+                                    </div>
+
+                                    <!-- Formula Display -->
+                                    <div class="mt-4">
+                                        <h6>Calculation Formula:</h6>
+                                        <div class="bg-light border rounded p-3 font-monospace small">
+                                            Total = (Base Donation × Pet Count + Additional Services) × Discounts
+                                        </div>
+                                    </div>
+
+                                    <!-- Breakdown -->
+                                    <div id="breakdown" class="mt-4 text-start d-none">
+                                        <h6>Cost Breakdown:</h6>
+                                        <div class="breakdown-list"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">PawsHome © 2025</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Calculator JavaScript (Same as original) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultDiv = document.getElementById('calculationResult');
+            const breakdownDiv = document.getElementById('breakdown');
+            const breakdownList = breakdownDiv.querySelector('.breakdown-list');
+
+            const baseDonations = {
+                'dog': 150, 'cat': 100, 'puppy': 200, 'kitten': 120, 'senior-pet': 75
+            };
+
+            const servicePrices = {
+                'microchip': 25, 'training': 50, 'grooming': 35, 'supplies': 40
+            };
+
+            function calculateDonation() {
+                const petType = document.getElementById('petType').value;
+                if (!petType) {
+                    alert('Please select a pet type.');
+                    return;
+                }
+
+                const petCount = parseInt(document.getElementById('petCount').value) || 1;
+                const adopterAge = parseInt(document.getElementById('adopterAge').value) || 0;
+                if (adopterAge < 18) {
+                    alert('You must be at least 18 years old to adopt.');
+                    return;
+                }
+
+                const veteranStatus = document.querySelector('input[name="veteran"]:checked').value;
+                const previousAdopter = document.querySelector('input[name="previousAdopter"]:checked').value;
+
+                const baseAmount = baseDonations[petType] * petCount;
+                let servicesTotal = 0;
+                const selectedServices = document.querySelectorAll('input[name="services"]:checked');
+                selectedServices.forEach(service => {
+                    servicesTotal += servicePrices[service.value];
+                });
+
+                const subtotal = baseAmount + servicesTotal;
+                let seniorDiscount = 0, veteranDiscount = 0, loyaltyDiscount = 0, multiPetDiscount = 0;
+
+                if (adopterAge >= 60 && subtotal > 0) seniorDiscount = 0.15;
+                if (veteranStatus === 'yes') veteranDiscount = 0.10;
+                if (previousAdopter === 'yes') loyaltyDiscount = 0.05;
+                if (petCount >= 2) multiPetDiscount = 0.08;
+
+                let totalDiscountRate = seniorDiscount + veteranDiscount + loyaltyDiscount + multiPetDiscount;
+                totalDiscountRate = totalDiscountRate > 0.30 ? 0.30 : totalDiscountRate;
+
+                const discountAmount = subtotal * totalDiscountRate;
+                const finalTotal = subtotal - discountAmount;
+
+                displayResults(subtotal, discountAmount, finalTotal, totalDiscountRate, {
+                    baseAmount, servicesTotal, seniorDiscount, veteranDiscount, 
+                    loyaltyDiscount, multiPetDiscount, petCount
+                });
+            }
+
+            function displayResults(subtotal, discountAmount, finalTotal, totalDiscountRate, details) {
+                const formatCurrency = (amount) => `$${amount.toFixed(2)}`;
+                
+                let resultHTML = `
+                    <div class="mb-3">
+                        <h2 class="text-success">${formatCurrency(finalTotal)}</h2>
+                        <p class="text-muted">Total Adoption Donation</p>
+                    </div>
+                `;
+
+                if (totalDiscountRate > 0) {
+                    const discountPercent = (totalDiscountRate * 100).toFixed(0);
+                    resultHTML += `
+                        <div class="alert alert-success">
+                            <i class="fas fa-tag me-2"></i> You saved ${discountPercent}% (${formatCurrency(discountAmount)})
+                        </div>
+                    `;
+                }
+
+                resultDiv.innerHTML = resultHTML;
+
+                let breakdownHTML = `
+                    <div class="d-flex justify-content-between py-2 border-bottom border-dashed">
+                        <span>Base Donation (${details.petCount} pet${details.petCount > 1 ? 's' : ''})</span>
+                        <span>${formatCurrency(details.baseAmount)}</span>
+                    </div>
+                `;
+
+                if (details.servicesTotal > 0) {
+                    breakdownHTML += `
+                        <div class="d-flex justify-content-between py-2 border-bottom border-dashed">
+                            <span>Additional Services</span>
+                            <span>${formatCurrency(details.servicesTotal)}</span>
+                        </div>
+                    `;
+                }
+
+                breakdownHTML += `
+                    <div class="d-flex justify-content-between py-2 border-bottom border-dashed">
+                        <span><strong>Subtotal</strong></span>
+                        <span><strong>${formatCurrency(subtotal)}</strong></span>
+                    </div>
+                `;
+
+                if (details.seniorDiscount > 0) {
+                    breakdownHTML += `
+                        <div class="d-flex justify-content-between py-2 border-bottom border-dashed text-success">
+                            <span>Senior Discount (15%)</span>
+                            <span>-${formatCurrency(subtotal * details.seniorDiscount)}</span>
+                        </div>
+                    `;
+                }
+
+                if (details.veteranDiscount > 0) {
+                    breakdownHTML += `
+                        <div class="d-flex justify-content-between py-2 border-bottom border-dashed text-success">
+                            <span>Veteran Discount (10%)</span>
+                            <span>-${formatCurrency(subtotal * details.veteranDiscount)}</span>
+                        </div>
+                    `;
+                }
+
+                if (details.loyaltyDiscount > 0) {
+                    breakdownHTML += `
+                        <div class="d-flex justify-content-between py-2 border-bottom border-dashed text-success">
+                            <span>Loyalty Discount (5%)</span>
+                            <span>-${formatCurrency(subtotal * details.loyaltyDiscount)}</span>
+                        </div>
+                    `;
+                }
+
+                if (details.multiPetDiscount > 0) {
+                    breakdownHTML += `
+                        <div class="d-flex justify-content-between py-2 border-bottom border-dashed text-success">
+                            <span>Multi-Pet Discount (8%)</span>
+                            <span>-${formatCurrency(subtotal * details.multiPetDiscount)}</span>
+                        </div>
+                    `;
+                }
+
+                breakdownHTML += `
+                    <div class="d-flex justify-content-between py-2 pt-3 border-top border-brown">
+                        <span><strong>Final Total</strong></span>
+                        <span><strong>${formatCurrency(finalTotal)}</strong></span>
+                    </div>
+                `;
+
+                breakdownList.innerHTML = breakdownHTML;
+                breakdownDiv.classList.remove('d-none');
+            }
+
+            calculateBtn.addEventListener('click', calculateDonation);
+
+            document.getElementById('adopterAge').addEventListener('blur', function() {
+                const age = parseInt(this.value);
+                if (age < 18) {
+                    this.classList.add('is-invalid');
+                } else {
+                    this.classList.remove('is-invalid');
+                }
+            });
+
+            document.getElementById('petCount').addEventListener('change', function() {
+                const count = parseInt(this.value);
+                if (count < 1 || count > 5) {
+                    this.classList.add('is-invalid');
+                } else {
+                    this.classList.remove('is-invalid');
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .bg-brown { background-color: #8B4513 !important; }
+        .text-brown { color: #8B4513 !important; }
+        .border-brown { border-color: #8B4513 !important; }
+        .border-dashed { border-bottom-style: dashed !important; }
+    </style>
+</body>
+</html>
