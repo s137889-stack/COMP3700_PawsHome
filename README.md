@@ -1,2 +1,2 @@
 # COMP3700_PawsHome
-Website project for COMP3700 Phase 3
+Website project for COMP3700 Phase 2
