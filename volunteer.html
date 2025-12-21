@@ -102,7 +102,7 @@ crossorigin="anonymous"></script>
 <div class="container mt-5">
     <div class="volunteer-container bg-light p-4 rounded-3 shadow-sm mx-auto">
     <h2 class="text-center mb-4">Become a Volunteer</h2>
-    <form action="https://httpbin.org/get" method="get" onsubmit="return validateVolunteer()" name="volunteer" class="d-flex flex-column align-items-center gap-3 was-validated" novalidate>
+    <form action="process_volunteer.php" method="POST" name="volunteer">
 
             <div class="form-group w-75"> 
             <label for="name" class="fw-bold" >Full Name</label>

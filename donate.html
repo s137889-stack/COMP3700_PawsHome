@@ -95,7 +95,7 @@ crossorigin="anonymous"></script>
 <div class="container mt-5">
     <div class="donation-container bg-light p-4 rounded-3 shadow-sm mx-auto">
         <h2 class="text-center mb-4">Make a donation</h2>
-        <form action="https://httpbin.org/get" onsubmit="return validateDonation()" method="get" name="donation" class="d-flex flex-column align-items-center gap-3 was-validated" novalidate>
+        <form action="process_donate.php" method="POST" name="donation">
 
             <div class="form-group w-75"> 
             <label for="name" class="fw-bold" >Full Name</label>
